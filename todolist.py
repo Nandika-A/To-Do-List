@@ -59,35 +59,3 @@ class ToDoList:
                 print(f"Task '{removed_task}' removed from your list!")
             else:
                 print("Invalid task number!")
-
-    def show_menu(self):
-        """Show menu options."""
-        print("\n--- To-Do List Menu ---")
-        print("1. Show tasks")
-        print("2. Add task")
-        print("3. Update task")
-        print("4. Delete task")
-        print("5. Exit")
-
-    def main(self):
-        """Main function to run the app."""
-        while True:
-            self.show_menu()
-            choice = int(input("Choose an option (1-5): "))
-            if choice == 1:
-                self.show_tasks()
-            elif choice == 2:
-                self.add_task()
-            elif choice == 3:
-                self.update_task()
-            elif choice == 4:
-                self.delete_task()
-            elif choice == 5:
-                print("...Exiting the app...")
-                break
-            else:
-                print("Invalid choice! Please try again.")
-
-if __name__ == "__main__":
-    todo_list = ToDoList()
-    todo_list.main()
