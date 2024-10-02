@@ -83,7 +83,7 @@ class ToDoList:
             elif choice == 4:
                 self.delete_task()
             elif choice == 5:
-                print("Exiting the app...")
+                print("...Exiting the app...")
                 break
             else:
                 print("Invalid choice! Please try again.")
