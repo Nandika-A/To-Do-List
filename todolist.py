@@ -1,6 +1,5 @@
-# To-Do List App
-
 tasks = []
+completed_tasks = []
 
 def show_tasks():
     """Show all tasks."""
@@ -8,12 +7,13 @@ def show_tasks():
         print("Your to-do list is empty!")
     else:
         print("Your tasks:")
-        #loop to show all tasks in the list
+        for i, task in enumerate(tasks, 1):
+            print(f"{i}. {task}")
 
 def add_task():
     """Add a new task."""
     task = input("Enter the task: ")
-    #add task to the list
+    tasks.append(task)  # Add task to the list
     print(f"Task '{task}' added to your list!")
 
 def update_task():
@@ -34,10 +34,31 @@ def delete_task():
     if len(tasks) > 0:
         task_num = int(input("Enter the task number to delete: ")) - 1
         if 0 <= task_num < len(tasks):
-            #delete task at index "task_num"
+            removed_task = tasks.pop(task_num)  # Fix: removed_task is assigned the deleted task
             print(f"Task '{removed_task}' removed from your list!")
         else:
             print("Invalid task number!")
+
+def mark_task_completed():
+    """Mark a task as completed."""
+    show_tasks()
+    if len(tasks) > 0:
+        task_num = int(input("Enter the task number to mark as completed: ")) - 1
+        if 0 <= task_num < len(tasks):
+            completed_task = tasks.pop(task_num)
+            completed_tasks.append(completed_task)
+            print(f"Task '{completed_task}' marked as completed!")
+        else:
+            print("Invalid task number!")
+
+def show_completed_tasks():
+    """Show completed tasks."""
+    if len(completed_tasks) == 0:
+        print("No tasks have been completed yet.")
+    else:
+        print("Completed tasks:")
+        for i, task in enumerate(completed_tasks, 1):
+            print(f"{i}. {task}")
 
 def show_menu():
     """Show menu options."""
@@ -46,14 +67,32 @@ def show_menu():
     print("2. Add task")
     print("3. Update task")
     print("4. Delete task")
-    print("5. Exit")
+    print("5. Mark task as completed")
+    print("6. Show completed tasks")
+    print("7. Exit")
 
 def main():
     """Main function to run the app."""
     while True:
         show_menu()
-        choice = input("Choose an option (1-5): ")
-        #if-else ladder to take choices from user including for show_tasks, add_tasks, update_task, delete_task, exit and one if wrong input is given
+        choice = input("Choose an option (1-7): ")
+        if choice == "1":
+            show_tasks()
+        elif choice == "2":
+            add_task()
+        elif choice == "3":
+            update_task()
+        elif choice == "4":
+            delete_task()
+        elif choice == "5":
+            mark_task_completed()
+        elif choice == "6":
+            show_completed_tasks()
+        elif choice == "7":
+            print("Exiting the to-do list app.")
+            break
+        else:
+            print("Invalid choice, please try again.")
 
 if __name__ == "__main__":
     main()
